@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ระบบการเงินโลก ที่ไม่มีใครสอนในห้องเรียน</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf8f3;
+    --bg-warm: #f4ede0;
+    --paper: #fffdf7;
+    --ink: #1a1814;
+    --ink-soft: #4a453d;
+    --ink-mute: #8a8478;
+    --accent: #8b2e1f;
+    --accent-soft: #c45a3e;
+    --gold: #b8893d;
+    --rule: #d4cab8;
+    --rule-soft: #e8e0cf;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'IBM Plex Sans Thai', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.75;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+  /* ── Layout ──────────────────────────────────────────── */
+  .frame { max-width: 760px; margin: 0 auto; padding: 60px 32px 120px; position: relative; }
+  @media (max-width: 640px) { .frame { padding: 32px 20px 80px; } }
+
+  /* ── Cover ───────────────────────────────────────────── */
+  .cover {
+    text-align: center;
+    padding: 80px 0 100px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 60px;
+    position: relative;
+  }
+  .cover::before {
+    content: ""; position: absolute; top: 30px; left: 50%; transform: translateX(-50%);
+    width: 60px; height: 1px; background: var(--gold);
+  }
+  .cover-eyebrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+  }
+  .cover-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 6vw, 58px);
+    font-weight: 500;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    color: var(--ink);
+  }
+  .cover-thai {
+    font-size: clamp(24px, 4vw, 32px);
+    font-weight: 500;
+    margin-bottom: 32px;
+    color: var(--accent);
+  }
+  .cover-sub {
+    font-size: 16px;
+    color: var(--ink-soft);
+    max-width: 480px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+  .cover-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-mute);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  /* ── TOC ─────────────────────────────────────────────── */
+  .toc {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 32px 36px;
+    margin-bottom: 80px;
+    position: relative;
+  }
+  .toc::before {
+    content: "INDEX";
+    position: absolute; top: -10px; left: 28px;
+    background: var(--bg); padding: 0 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 3px; color: var(--accent);
+  }
+  .toc-list { list-style: none; }
+  .toc-list li {
+    display: flex; align-items: baseline; gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px dashed var(--rule-soft);
+    font-size: 15px;
+    cursor: pointer;
+    transition: padding 0.2s;
+  }
+  .toc-list li:last-child { border-bottom: none; }
+  .toc-list li:hover { padding-left: 8px; color: var(--accent); }
+  .toc-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--gold);
+    min-width: 28px;
+  }
+  .toc-title { flex: 1; }
+  .toc-dots { color: var(--rule); letter-spacing: 2px; }
+  .toc-page { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-mute); }
+
+  /* ── Chapter ─────────────────────────────────────────── */
+  .chapter { margin-bottom: 100px; scroll-margin-top: 40px; }
+  .ch-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .ch-eyebrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ink-mute);
+    margin-bottom: 20px;
+  }
+  .ch-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(26px, 4vw, 36px);
+    font-weight: 500;
+    line-height: 1.25;
+    color: var(--ink);
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid var(--ink);
+    position: relative;
+  }
+  .ch-title::after {
+    content: ""; position: absolute; bottom: -2px; left: 0;
+    width: 80px; height: 2px; background: var(--accent);
+  }
+
+  /* ── Body Prose ─────────────────────────────────────── */
+  .lead {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin-bottom: 28px;
+    font-style: italic;
+  }
+  .lead::first-letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 56px;
+    float: left;
+    line-height: 0.85;
+    padding: 8px 12px 0 0;
+    color: var(--accent);
+    font-style: normal;
+    font-weight: 500;
+  }
+  p { margin-bottom: 18px; font-size: 16px; }
+  p strong, b { color: var(--accent); font-weight: 600; }
+
+  /* ── Mechanism Card ─────────────────────────────────── */
+  .mech {
+    background: var(--paper);
+    border-left: 4px solid var(--accent);
+    padding: 24px 28px;
+    margin: 28px 0;
+  }
+  .mech-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .mech-body { font-size: 15px; line-height: 1.7; color: var(--ink); }
+
+  /* ── Code Flow ──────────────────────────────────────── */
+  .flow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 20px 24px;
+    margin: 20px 0;
+    overflow-x: auto;
+    line-height: 1.7;
+    white-space: pre;
+    position: relative;
+  }
+  .flow::before {
+    content: "// flow";
+    position: absolute; top: 8px; right: 14px;
+    font-size: 10px; color: var(--gold); opacity: 0.7;
+  }
+
+  /* ── Insight ────────────────────────────────────────── */
+  .insight {
+    background: var(--bg-warm);
+    padding: 28px 32px;
+    margin: 32px 0;
+    border-radius: 2px;
+    position: relative;
+  }
+  .insight::before {
+    content: "✦"; position: absolute; top: 18px; left: 14px;
+    color: var(--gold); font-size: 14px;
+  }
+  .insight-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    margin-bottom: 8px;
+    padding-left: 16px;
+  }
+  .insight-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    line-height: 1.55;
+    font-style: italic;
+    color: var(--ink);
+    padding-left: 16px;
+  }
+
+  /* ── Tables ─────────────────────────────────────────── */
+  .table-wrap { margin: 28px 0; overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 2px solid var(--ink);
+    background: var(--paper);
+  }
+  td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--rule-soft);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+  tr:hover td { background: var(--paper); }
+
+  /* ── Chapter 4 Special — Deep Dive ──────────────────── */
+  .deepdive {
+    background: linear-gradient(180deg, var(--paper) 0%, var(--bg-warm) 100%);
+    border: 1px solid var(--gold);
+    padding: 36px 32px;
+    margin: 40px 0;
+    position: relative;
+  }
+  .deepdive::before {
+    content: "DEEP DIVE";
+    position: absolute; top: -10px; left: 24px;
+    background: var(--bg); padding: 0 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 3px; color: var(--gold);
+  }
+  .deepdive h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 16px;
+    margin-top: 24px;
+  }
+  .deepdive h3:first-child { margin-top: 0; }
+
+  /* Stage block — visual story of debt transformation */
+  .stages {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin: 24px 0;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+  }
+  .stage {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+  .stage:last-child { border-bottom: none; }
+  .stage-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    padding-top: 4px;
+  }
+  .stage-content { }
+  .stage-title {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+  .stage-body {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+  }
+  .stage-actors {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  .actor {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 3px 10px;
+    background: var(--bg-warm);
+    color: var(--accent);
+    letter-spacing: 1px;
+    border-radius: 2px;
+  }
+
+  /* Credit card metaphor */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .card-item {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 22px;
+    position: relative;
+  }
+  .card-item.personal { border-top: 3px solid var(--ink-mute); }
+  .card-item.national { border-top: 3px solid var(--accent); }
+  .card-head {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--ink-mute);
+    margin-bottom: 12px;
+  }
+  .card-item.national .card-head { color: var(--accent); }
+  .card-list { list-style: none; }
+  .card-list li {
+    padding: 8px 0;
+    font-size: 13.5px;
+    line-height: 1.6;
+    border-bottom: 1px dashed var(--rule-soft);
+  }
+  .card-list li:last-child { border: none; }
+  .card-list li::before {
+    content: "→ ";
+    color: var(--gold);
+    margin-right: 4px;
+  }
+
+  /* Alchemy diagram */
+  .alchemy {
+    background: var(--paper);
+    padding: 28px 24px;
+    margin: 24px 0;
+    border: 1px solid var(--rule);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .alchemy-phase {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .alchemy-phase:last-child { border: none; padding-bottom: 0; margin-bottom: 0; }
+  .alchemy-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--accent);
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .alchemy-row {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 10px;
+    padding: 4px 0;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .alchemy-actor {
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 10px;
+    padding-top: 2px;
+  }
+  .alchemy-arrow {
+    color: var(--gold);
+    text-align: center;
+    padding: 6px 0;
+    font-size: 14px;
+  }
+
+  /* ── Footer Synthesis ──────────────────────────────── */
+  .synthesis {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 48px 36px;
+    margin: 60px 0 0;
+  }
+  .synthesis-eyebrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--gold);
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+  .synthesis-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 500;
+    margin-bottom: 28px;
+    line-height: 1.3;
+  }
+  .syn-row {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 20px;
+    padding: 14px 0;
+    border-bottom: 1px solid #3a3530;
+    align-items: baseline;
+  }
+  .syn-row:last-child { border: none; }
+  .syn-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--gold);
+  }
+  .syn-text { font-size: 15px; line-height: 1.6; }
+  .syn-text b { color: var(--gold); font-weight: 500; }
+
+  /* ── Revolving Door (Ch 2 deep dive) ─────────────────── */
+  .rdoor-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 19px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin: 16px 0 24px;
+    padding: 0 0 0 20px;
+    border-left: 3px solid var(--gold);
+  }
+  .rdoor-grid { margin: 24px 0; }
+  .rdoor-person {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--accent);
+    padding: 18px 22px;
+    margin-bottom: 12px;
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 18px;
+    align-items: start;
+  }
+  .rdoor-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--accent);
+    line-height: 1.4;
+  }
+  .rdoor-name small {
+    display: block;
+    font-weight: 400;
+    color: var(--ink-mute);
+    font-size: 11px;
+    margin-top: 4px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .rdoor-flow { font-size: 13.5px; line-height: 1.7; color: var(--ink); }
+  .rdoor-step {
+    display: inline-block;
+    padding: 2px 9px;
+    margin: 2px 4px 2px 0;
+    background: var(--bg-warm);
+    border-radius: 3px;
+    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent);
+  }
+  .rdoor-arrow { color: var(--gold); margin: 0 4px; }
+  .rdoor-cite {
+    font-size: 11px;
+    color: var(--ink-mute);
+    margin-top: 8px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .rdoor-cite a { color: var(--accent-soft); text-decoration: none; }
+  .rdoor-cite a:hover { text-decoration: underline; }
+
+  .levels {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin: 28px 0;
+    border: 1px solid var(--rule);
+  }
+  .level {
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--paper);
+  }
+  .level:last-child { border-bottom: none; }
+  .level.lvl-3 { background: var(--bg-warm); border-left: 4px solid var(--accent); }
+  .level-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .level-title {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 6px;
+    color: var(--ink);
+  }
+  .level-body {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+  }
+
+  .lobby-stat {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule-soft);
+    align-items: baseline;
+  }
+  .lobby-stat:last-child { border: none; }
+  .lobby-label { font-size: 14px; color: var(--ink); }
+  .lobby-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--accent);
+  }
+
+  .sources {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 28px 32px;
+    margin: 60px 0 0;
+  }
+  .sources-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .sources ol {
+    list-style: none;
+    counter-reset: src;
+    padding: 0;
+  }
+  .sources ol li {
+    counter-increment: src;
+    font-size: 12.5px;
+    line-height: 1.7;
+    padding: 8px 0 8px 36px;
+    position: relative;
+    color: var(--ink-soft);
+    font-family: 'IBM Plex Sans Thai', sans-serif;
+  }
+  .sources ol li::before {
+    content: "[" counter(src) "]";
+    position: absolute; left: 0; top: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .sources ol li a {
+    color: var(--accent-soft);
+    text-decoration: none;
+    word-break: break-all;
+  }
+  .sources ol li a:hover { text-decoration: underline; }
+
+  /* ── Footer ─────────────────────────────────────────── */
+  .colophon {
+    text-align: center;
+    margin-top: 80px;
+    padding-top: 40px;
+    border-top: 1px solid var(--rule);
+    color: var(--ink-mute);
+    font-size: 12px;
+    line-height: 1.8;
+  }
+  .colophon-mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  /* Back-to-top */
+  .top-btn {
+    position: fixed;
+    bottom: 30px; right: 30px;
+    width: 48px; height: 48px;
+    background: var(--ink);
+    color: var(--bg);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 100;
+  }
+  .top-btn.show { opacity: 0.85; }
+  .top-btn:hover { opacity: 1; }
+
+  /* Pull quote */
+  .pull {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    line-height: 1.4;
+    font-style: italic;
+    color: var(--accent);
+    text-align: center;
+    margin: 36px 20px;
+    padding: 24px 0;
+    border-top: 1px solid var(--gold);
+    border-bottom: 1px solid var(--gold);
+    position: relative;
+  }
+  .pull::before, .pull::after {
+    font-size: 48px; color: var(--gold); opacity: 0.4;
+    line-height: 0; position: absolute;
+  }
+  .pull::before { content: "\201C"; top: 28px; left: -12px; }
+  .pull::after { content: "\201D"; bottom: -8px; right: -12px; }
+
+  @media (max-width: 640px) {
+    .stage { grid-template-columns: 60px 1fr; gap: 12px; padding: 16px 18px; }
+    .alchemy-row { grid-template-columns: 70px 1fr; }
+    .insight { padding: 22px 24px 22px 36px; }
+    .deepdive { padding: 28px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="frame">
+
+  <!-- COVER -->
+  <header class="cover">
+    <div class="cover-eyebrow">a manual for the curious</div>
+    <h1 class="cover-title">The Hidden Ledger</h1>
+    <div class="cover-thai">ระบบการเงินโลก<br>ที่ไม่มีใครสอนในห้องเรียน</div>
+    <p class="cover-sub">7 คำถามต่อเนื่อง ที่จะพาเข้าใจกลไก<br>ตั้งแต่การฝากเงินในธนาคาร จนถึงสงครามโลก</p>
+    <div class="cover-meta">a learning journey · 7 chapters</div>
+  </header>
+
+  <!-- TABLE OF CONTENTS -->
+  <nav class="toc">
+    <ol class="toc-list">
+      <li onclick="document.getElementById('ch1').scrollIntoView()">
+        <span class="toc-num">I.</span>
+        <span class="toc-title">รากของปัญหา — fractional reserve</span>
+        <span class="toc-dots">·····</span>
+        <span class="toc-page">001</span>
+      </li>
+      <li onclick="document.getElementById('ch2').scrollIntoView()" style="background: var(--bg-warm);">
+        <span class="toc-num">II.</span>
+        <span class="toc-title"><b style="color:var(--accent)">คำถามที่ห้ามตอบในระบบ — codependency + revolving door</b></span>
+        <span class="toc-dots">·····</span>
+        <span class="toc-page">012</span>
+      </li>
+      <li onclick="document.getElementById('ch3').scrollIntoView()">
+        <span class="toc-num">III.</span>
+        <span class="toc-title">ข้ออ้างที่สมบูรณ์แบบ — war as cover</span>
+        <span class="toc-dots">·····</span>
+        <span class="toc-page">028</span>
+      </li>
+      <li onclick="document.getElementById('ch4').scrollIntoView()" style="background: var(--bg-warm);">
+        <span class="toc-num">IV.</span>
+        <span class="toc-title"><b style="color:var(--accent)">ความลับที่ใหญ่ที่สุด — money creation</b></span>
+        <span class="toc-dots">·····</span>
+        <span class="toc-page">047</span>
+      </li>
+      <li onclick="document.getElementById('ch5').scrollIntoView()">
+        <span class="toc-num">V.</span>
+        <span class="toc-title">กลไกซักฟอกหนี้ — debt laundering</span>
+        <span class="toc-dots">·····</span>
+        <span class="toc-page">072</span>
+      </li>
+      <li onclick="document.getElementById('ch6').scrollIntoView()">
+        <span class="toc-num">VI.</span>
+        <span class="toc-title">pattern ที่ไม่เคยเปลี่ยน — eternal cycle</span>
+        <span class="toc-dots">·····</span>
+        <span class="toc-page">091</span>
+      </li>
+      <li onclick="document.getElementById('ch7').scrollIntoView()">
+        <span class="toc-num">VII.</span>
+        <span class="toc-title">แล้วเราจะวางตัวยังไง — your edge</span>
+        <span class="toc-dots">·····</span>
+        <span class="toc-page">112</span>
+      </li>
+    </ol>
+  </nav>
+
+  <!-- ────────────── CHAPTER 1 ────────────── -->
+  <article class="chapter" id="ch1">
+    <div class="ch-num">CHAPTER I</div>
+    <div class="ch-eyebrow">รากของปัญหา</div>
+    <h2 class="ch-title">"ฝากเงินที่ธนาคารน่าจะปลอดภัยที่สุด<br>ทำไมธนาคารถึงล้มได้?"</h2>
+
+    <p class="lead">เริ่มจากความเข้าใจผิดที่ทุกคนมี — ธนาคารไม่ได้เก็บเงินของคุณไว้ในตู้ มันเก็บเพียง 10% แล้วเอา 90% ที่เหลือไปปล่อยกู้</p>
+
+    <div class="mech">
+      <div class="mech-label">— กลไก fractional reserve banking</div>
+      <div class="mech-body">เงินที่ปล่อยกู้ ก็ถูกฝากต่อในธนาคารอื่น ปล่อยกู้ต่อ ทบไปเรื่อยๆ จนเงินจริง 100 บาท กลายเป็นหนี้ในระบบกว่า 900 บาท</div>
+    </div>
+
+    <div class="flow">เงินฝาก    100 บาท
+   ↓
+สำรอง       10 บาท
+ปล่อยกู้    90 บาท → ฝากใหม่ → กู้ 81 บาท → ...
+   ↓
+เงินจริง 100  →  หนี้ในระบบ 900+</div>
+
+    <div class="insight">
+      <div class="insight-label">KEY INSIGHT</div>
+      <div class="insight-body">เงินฝากของคุณ ไม่ใช่เงินสดที่รออยู่ในตู้ — มันถูกปล่อยกู้ออกไปนานแล้ว ถ้าคนแห่ถอนพร้อมกัน ธนาคารไม่มีเงินคืน ไม่ว่าจะใหญ่แค่ไหน</div>
+    </div>
+  </article>
+
+  <!-- ────────────── CHAPTER 2 ────────────── -->
+  <article class="chapter" id="ch2">
+    <div class="ch-num">CHAPTER II</div>
+    <div class="ch-eyebrow">คำถามที่ห้ามตอบในระบบ</div>
+    <h2 class="ch-title">"ก็ปล่อยให้ธนาคารที่บริหารผิดล้มไปสิ<br>ยุติธรรมดี ทำไมรัฐต้องช่วย?"</h2>
+
+    <p class="lead">รัฐกับธนาคารไม่ได้เป็นพันธมิตร — แต่เป็นสิ่งมีชีวิตที่อาศัยกันแบบตัดไม่ขาด</p>
+
+    <p>รัฐเก็บภาษีได้ช้า แต่ต้องการเงินเร็ว ทั้งสำหรับสงคราม วิกฤต หรือโครงการใหญ่ <b>ธนาคารคือ ATM เครื่องเดียวที่รัฐมี</b> ปล่อยธนาคารล้ม จึงเท่ากับรัฐตัดแขนตัวเอง</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>รัฐให้ธนาคาร</th><th>ธนาคารให้รัฐ</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>ใบอนุญาตพิมพ์เงิน</td><td>ซื้อพันธบัตรรัฐบาล</td></tr>
+          <tr><td>bailout เมื่อล้ม</td><td>ปล่อยกู้ให้รัฐทำสงคราม</td></tr>
+          <tr><td>กฎหมายคุ้มครอง</td><td>จัดการระบบการเงินแทนรัฐ</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- DEEP DIVE — Revolving Door -->
+    <div class="deepdive">
+      <h3>คำถามที่ลึกกว่า — "รัฐ ≠ ธนาคาร" จริงเหรอ?</h3>
+      <p style="font-size: 15px;">คำตอบเบื้องต้นคือ <b>"รัฐกับธนาคารพึ่งพากัน"</b> — แต่ถ้าขุดลึกอีกชั้นจะเจอความจริงที่น่ากลัวกว่านั้น: <b>คนตัดสินใจในรัฐ คือคนเดียวกับเจ้าของธนาคาร</b> ไม่ใช่ "พันธมิตร" แต่คือ <b>คนกลุ่มเดียวกันที่หมุนเวียนระหว่างสองตำแหน่ง</b></p>
+
+      <h3>Revolving Door — ประตูหมุน</h3>
+      <p class="rdoor-intro">"ใครคุม Fed? คนที่มาจาก Wall Street<br>ใครคุม Treasury? คนที่มาจาก Goldman Sachs<br>เหมือนให้โจรเป็นคนเขียนกฎต่อต้านการขโมย"</p>
+
+      <p style="font-size: 14px; margin-bottom: 16px;">ดูตัวอย่างจริง — คนเดียวกันสลับเก้าอี้ระหว่างธนาคารและรัฐบาล:</p>
+
+      <div class="rdoor-grid">
+
+        <div class="rdoor-person">
+          <div class="rdoor-name">Robert Rubin<small>1995–1999</small></div>
+          <div class="rdoor-flow">
+            <span class="rdoor-step">Goldman Sachs Co-Chairman</span>
+            <span class="rdoor-arrow">→</span>
+            <span class="rdoor-step">รมต.คลัง สหรัฐฯ ที่ 70</span>
+            <span class="rdoor-arrow">→</span>
+            <span class="rdoor-step">Citigroup Senior Counselor</span>
+            <div class="rdoor-cite">26 ปีที่ Goldman Sachs ก่อนเข้ารัฐบาล Clinton ในปี 1993 [1][2]</div>
+          </div>
+        </div>
+
+        <div class="rdoor-person">
+          <div class="rdoor-name">Henry Paulson<small>2006–2009</small></div>
+          <div class="rdoor-flow">
+            <span class="rdoor-step">Goldman Sachs CEO</span>
+            <span class="rdoor-arrow">→</span>
+            <span class="rdoor-step">รมต.คลัง สหรัฐฯ ที่ 74</span>
+            <span class="rdoor-arrow">→</span>
+            <span class="rdoor-step">นำ TARP $700B Bailout</span>
+            <div class="rdoor-cite">32 ปีที่ Goldman Sachs ได้ค่าตอบแทนประมาณ $480 ล้าน — Goldman ได้เงินจาก AIG bailout ประมาณ $12.9B [3][4]</div>
+          </div>
+        </div>
+
+        <div class="rdoor-person">
+          <div class="rdoor-name">Steven Mnuchin<small>2017–2021</small></div>
+          <div class="rdoor-flow">
+            <span class="rdoor-step">Goldman Sachs Partner (17 ปี)</span>
+            <span class="rdoor-arrow">→</span>
+            <span class="rdoor-step">รมต.คลัง สหรัฐฯ ที่ 77</span>
+            <span class="rdoor-arrow">→</span>
+            <span class="rdoor-step">Liberty Strategic Capital</span>
+            <div class="rdoor-cite">Goldman partner คนที่ 3 ที่ขึ้นมาเป็น Treasury Secretary ต่อจาก Rubin และ Paulson [5][6]</div>
+          </div>
+        </div>
+
+        <div class="rdoor-person">
+          <div class="rdoor-name">Mario Draghi<small>2002–2019</small></div>
+          <div class="rdoor-flow">
+            <span class="rdoor-step">Italian Treasury</span>
+            <span class="rdoor-arrow">→</span>
+            <span class="rdoor-step">Goldman Sachs Vice Chairman</span>
+            <span class="rdoor-arrow">→</span>
+            <span class="rdoor-step">ECB President</span>
+            <span class="rdoor-arrow">→</span>
+            <span class="rdoor-step">นายกอิตาลี</span>
+            <div class="rdoor-cite">หมุนสามรอบ — รัฐ → ธนาคาร → ธนาคารกลางยุโรป → นายกฯ [7][8]</div>
+          </div>
+        </div>
+
+        <div class="rdoor-person">
+          <div class="rdoor-name">Janet Yellen<small>1994–2025</small></div>
+          <div class="rdoor-flow">
+            <span class="rdoor-step">Fed Board of Governors</span>
+            <span class="rdoor-arrow">→</span>
+            <span class="rdoor-step">Council of Economic Advisers</span>
+            <span class="rdoor-arrow">→</span>
+            <span class="rdoor-step">Fed Chair</span>
+            <span class="rdoor-arrow">→</span>
+            <span class="rdoor-step">รมต.คลัง สหรัฐฯ ที่ 78</span>
+            <div class="rdoor-cite">คนแรกในประวัติศาสตร์ที่เป็นทั้ง CEA Chair, Fed Chair และ Treasury Secretary [9][10]</div>
+          </div>
+        </div>
+
+      </div>
+
+      <h3>3 ระดับของ "การยอม" ที่ต้องแยก</h3>
+      <p style="font-size: 14px; margin-bottom: 8px;">"ยอม" ที่คุณถามมีหลายระดับ — ดูว่าตอนนี้อยู่ระดับไหน:</p>
+
+      <div class="levels">
+        <div class="level lvl-1">
+          <div class="level-tag">LEVEL 01</div>
+          <div class="level-title">Cooperation — ร่วมมือ</div>
+          <div class="level-body">ปกติของทุกประเทศ ธนาคารช่วยจัดการระบบเงิน รัฐออกกฎคุม สองฝ่ายแยกกันชัดเจน</div>
+        </div>
+        <div class="level lvl-2">
+          <div class="level-tag">LEVEL 02</div>
+          <div class="level-title">Capture — ถูกยึด</div>
+          <div class="level-body">Regulator ถูกคนของ Industry ครอบงำ กฎหมายเอื้อ Industry มากเกินสมควร — เริ่มยอมเกินไป</div>
+        </div>
+        <div class="level lvl-3">
+          <div class="level-tag">LEVEL 03 — สถานะปัจจุบัน</div>
+          <div class="level-title">Fusion — กลายเป็นเดียวกัน</div>
+          <div class="level-body">แยกไม่ออกแล้วว่าใครคือใคร คนหมุนเวียนระหว่างสองฝั่งจนกลายเป็น <b>ชนชั้นเดียวกัน</b> — สหรัฐฯ ยุโรป ญี่ปุ่น อยู่ระดับนี้</div>
+        </div>
+      </div>
+
+      <h3>Lobbying — เงินที่ซื้อกฎหมายได้</h3>
+      <p style="font-size: 14px; margin-bottom: 8px;">ตัวเลขจริงในสหรัฐฯ ปี 2024 — Lobbying แตะระดับสูงสุดในประวัติศาสตร์:</p>
+
+      <div style="background: var(--paper); padding: 20px 24px; border: 1px solid var(--rule); margin: 16px 0;">
+        <div class="lobby-stat">
+          <div class="lobby-label">Total Federal Lobbying (2024)</div>
+          <div class="lobby-num">$4.44 พันล้าน</div>
+        </div>
+        <div class="lobby-stat">
+          <div class="lobby-label"><b style="color:var(--accent)">Finance / Insurance / Real Estate</b></div>
+          <div class="lobby-num">$636.4 ล้าน</div>
+        </div>
+        <div class="lobby-stat">
+          <div class="lobby-label">Pharmaceuticals & Health Products</div>
+          <div class="lobby-num">$384.5 ล้าน</div>
+        </div>
+        <div class="lobby-stat">
+          <div class="lobby-label">Oil & Gas</div>
+          <div class="lobby-num">$153 ล้าน</div>
+        </div>
+        <div class="rdoor-cite" style="margin-top: 12px;">ที่มา: OpenSecrets — Federal lobbying รวมเพิ่มขึ้น $1B ในรอบ 10 ปี [11][12]</div>
+      </div>
+
+      <p style="font-size: 14px;"><b>Finance ใช้เงิน Lobby มากที่สุดเป็น sector</b> — เพื่อให้แน่ใจว่ากฎหมายจะไม่เปลี่ยน นี่คือเหตุผลที่หลังวิกฤตทุกครั้ง การปฏิรูปจริงๆ มักเกิดน้อยมาก</p>
+
+      <h3>Two-Party Theater — ละครฉากใหญ่</h3>
+      <p style="font-size: 14px; margin-bottom: 12px;">สังเกตว่า — ไม่ว่าพรรคไหนชนะการเลือกตั้ง:</p>
+
+      <div class="flow">Republican ชนะ  →  Mnuchin (Goldman Sachs) เป็น Treasury
+Democrat ชนะ    →  Yellen (Fed) เป็น Treasury
+Republican ชนะ  →  Paulson (Goldman Sachs) เป็น Treasury
+Democrat ชนะ    →  Rubin (Goldman Sachs) เป็น Treasury
+
+นโยบายการเงินจริง ไม่เปลี่ยนแปลงตามพรรค</div>
+
+      <p style="font-size: 14px;">ประชาชนถกเถียงเรื่องชั้นบน (เพศ เชื้อชาติ ศาสนา) แต่ <b>นโยบายการเงิน ออกแบบโดยคนกลุ่มเดียวกันเสมอ</b> ไม่ว่าใครชนะ</p>
+
+      <div class="pull">รัฐไม่ได้ "ยอม" ธนาคาร<br><span style="font-size:18px; color:var(--ink-soft)">รัฐ = ธนาคาร เพราะคนตัดสินใจคือคนเดียวกัน</span></div>
+
+      <h3>ใครได้ประโยชน์จากการคงไว้</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>กลุ่ม</th><th>ได้อะไร</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>Politicians</b></td><td>เงินหาเสียง + งานหลังออกจากตำแหน่ง</td></tr>
+            <tr><td><b>Bankers</b></td><td>กฎหมายเอื้อ + Bailout เมื่อล้ม</td></tr>
+            <tr><td><b>Top 1%</b></td><td>เงินเฟ้อทำให้สินทรัพย์ขึ้น</td></tr>
+            <tr><td><b>ประชาชน 99%</b></td><td>จ่ายผ่านเงินเฟ้อ ภาษี ค่าแรงจริงลด</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="insight">
+      <div class="insight-label">KEY INSIGHT — ระดับสังเคราะห์</div>
+      <div class="insight-body">รัฐไม่ได้ "ยอม" ช่วยธนาคาร — รัฐ <b>เป็น</b> ธนาคาร ในแง่ที่ว่าคนตัดสินใจคือคนเดียวกัน ทุกวิกฤตจึงจบลงด้วย Bailout เสมอ ไม่ใช่เพราะรัฐ "เลือก" ช่วย แต่เพราะคนที่ตัดสินใจ คือคนที่จะได้ประโยชน์จากการช่วย</div>
+    </div>
+  </article>
+
+  <!-- ────────────── CHAPTER 3 ────────────── -->
+  <article class="chapter" id="ch3">
+    <div class="ch-num">CHAPTER III</div>
+    <div class="ch-eyebrow">ข้ออ้างที่สมบูรณ์แบบ</div>
+    <h2 class="ch-title">"แล้วทำไมต้องไปทำสงคราม?<br>ประชาชนสองฝั่งไม่รู้จักกันด้วยซ้ำ"</h2>
+
+    <p class="lead">เมื่อหนี้ท่วมระบบจนไปต่อไม่ได้ สงครามคือ "ข้ออ้าง" ที่ทำให้ทุกอย่างยอมรับได้</p>
+
+    <p>ระงับ gold standard ได้ พิมพ์เงินไม่จำกัดได้ แปลงหนี้เน่าเป็นหนี้รัฐได้ — ทุกอย่างกลายเป็น <b>"เพื่อชาติ"</b> ในชั่วข้ามคืน</p>
+
+    <div class="flow">วิกฤตเศรษฐกิจ
+   ↓
+หาศัตรูภายนอก
+   ↓
+สงคราม = ใบอนุญาตพิมพ์เงิน
+   ↓
+รีเซ็ตระบบ + ผู้ชนะกำหนดระเบียบใหม่</div>
+
+    <div class="pull">ประชาชนสองฝั่งไม่ได้เกลียดกัน<br>แต่ถูกส่งไปฆ่ากัน เพื่อให้ Elite รีเซ็ตระบบ</div>
+
+    <div class="insight">
+      <div class="insight-label">KEY INSIGHT</div>
+      <div class="insight-body">สงครามไม่ได้เกิดจากความเกลียดชังของประชาชน แต่จากการบริหารที่พังของชนชั้นนำ ที่ต้องการเครื่องมือรีเซ็ตระบบโดยมีข้ออ้างทางศีลธรรม</div>
+    </div>
+  </article>
+
+  <!-- ────────────── CHAPTER 4 — DEEPENED ────────────── -->
+  <article class="chapter" id="ch4">
+    <div class="ch-num">CHAPTER IV</div>
+    <div class="ch-eyebrow">ความลับที่ใหญ่ที่สุด — extended</div>
+    <h2 class="ch-title">"ธนาคารปล่อยกู้เยอะแล้ว<br>เอาเงินที่ไหนมาให้รัฐกู้ทำสงครามอีก?"</h2>
+
+    <p class="lead">คำตอบคือ — ไม่จำเป็นต้องมี เพราะธนาคารคือผู้สร้างเงิน ไม่ใช่ผู้ส่งต่อเงิน</p>
+
+    <p>นี่คือ insight ที่คนส่วนใหญ่ไม่เคยจับ — <b>อำนาจการสร้างเงินถูกแยกออกจากรัฐมาตั้งแต่ปี 1913</b> รัฐมีแต่อำนาจ แต่ไม่มีเงิน ธนาคารมีเงิน แต่ต้องการอำนาจ ทั้งสองจึงจับมือกันในระบบที่ออกแบบให้พึ่งพากันตลอดไป</p>
+
+    <div class="mech">
+      <div class="mech-label">— money creation from thin air</div>
+      <div class="mech-body">ธนาคารไม่ได้จ่ายเงินจริงเมื่อซื้อพันธบัตรรัฐ มันแค่ "บันทึกในบัญชี" ว่ารัฐมีเงินแล้ว เงินถูกสร้างขึ้น ณ จุดที่กดปุ่ม ระบบนี้ทำงานได้ตราบใดที่คนยังเชื่อว่าตัวเลขในบัญชี = เงินจริง</div>
+    </div>
+
+    <div class="flow">รัฐออก war bond                £1,000
+ธนาคาร "ซื้อ" พันธบัตร         £1,000  ← เงินถูกสร้างที่นี่
+รัฐเอาเงินไปจ่ายทหาร/อาวุธ
+ธนาคารถือพันธบัตร = ได้ดอกเบี้ย 30 ปี</div>
+
+    <!-- DEEP DIVE SECTION — User's synthesis -->
+    <div class="deepdive">
+      <h3>การแยกอำนาจที่ซ่อนอยู่</h3>
+      <p style="margin-bottom: 16px; font-size: 15px;">รัฐ <b>ไม่ใช่</b> ผู้ผลิตเงิน ธนาคารต่างหากที่ผลิต — แต่รัฐเป็นคนออก "ใบอนุญาต" ให้ธนาคารผลิต ความสัมพันธ์นี้คือหัวใจของระบบทั้งหมด</p>
+
+      <div class="flow">รัฐ        →  มีอำนาจ  /  ไม่มีเงิน
+ธนาคาร     →  มีเงิน    /  ต้องการอำนาจ
+            ↓
+        จับมือกัน
+   "ฉันออกใบอนุญาตให้
+    เธอผลิตเงินมาให้ฉันใช้"</div>
+
+      <h3>กลไก "รูด credit card ประชาชน"</h3>
+      <p style="margin-bottom: 8px; font-size: 15px;">รัฐใช้ประชาชนเป็นผู้ค้ำประกันโดยที่ประชาชนไม่ได้ลงนาม — เปรียบเทียบให้เห็นภาพ:</p>
+
+      <div class="cards">
+        <div class="card-item personal">
+          <div class="card-head">CREDIT CARD ส่วนตัว</div>
+          <ul class="card-list">
+            <li>ธนาคารให้วงเงิน</li>
+            <li>คุณรูด = หนี้ของคุณ</li>
+            <li>คุณจ่ายดอกเบี้ย</li>
+            <li>จ่ายไม่ไหว = ล้มละลายส่วนตัว</li>
+            <li><b style="color:var(--ink)">ยกเลิกบัตรได้</b></li>
+          </ul>
+        </div>
+        <div class="card-item national">
+          <div class="card-head">CREDIT CARD ประเทศ</div>
+          <ul class="card-list">
+            <li>ธนาคารกลางให้วงเงิน</li>
+            <li>รัฐรูด = หนี้สาธารณะ</li>
+            <li>ประชาชนจ่ายผ่านภาษี</li>
+            <li>จ่ายไม่ไหว = พิมพ์เงิน → เงินเฟ้อ</li>
+            <li><b>ประชาชนยกเลิกไม่ได้</b></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>4 ขั้นตอนของกระบวนการทั้งหมด</h3>
+      <p style="margin-bottom: 8px; font-size: 15px;">เมื่อประกอบกลไกย่อยทั้งหมดเข้าด้วยกัน — นี่คือ <b>ภาพรวมที่ระบบไม่อยากให้คุณเห็น</b>:</p>
+
+      <div class="stages">
+        <div class="stage">
+          <div class="stage-tag">STEP 01</div>
+          <div class="stage-content">
+            <div class="stage-title">รัฐต้องการเงิน — ธนาคารไม่มีพอ</div>
+            <div class="stage-body">ธนาคารปล่อยกู้เกินตัวอยู่แล้วในระบบ fractional reserve รัฐมีโครงการใหญ่ที่ต้องการเงินทันที (สงคราม วิกฤต) แต่เก็บภาษีไม่ทัน</div>
+            <div class="stage-actors">
+              <span class="actor">ธนาคาร: หนี้ท่วม</span>
+              <span class="actor">รัฐ: เงินไม่พอ</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stage">
+          <div class="stage-tag">STEP 02</div>
+          <div class="stage-content">
+            <div class="stage-title">"ปิ๊ง idea" — ใช้ประชาชนเป็นผู้ค้ำ</div>
+            <div class="stage-body">รัฐกู้ในนามของรัฐ แต่ใช้เครดิตของประชาชนเป็นหลักประกัน ธนาคารผลิตเงินให้รัฐผ่านการบันทึกในบัญชี — ไม่มีเงินจริงไหลออกจากที่ไหน เป็นการสร้างจากอากาศโดยมีประชาชนเป็นผู้ค้ำเงียบ</div>
+            <div class="stage-actors">
+              <span class="actor">รัฐ: ผู้กู้</span>
+              <span class="actor">ธนาคาร: ผู้ผลิต</span>
+              <span class="actor">ประชาชน: ผู้ค้ำ (ไม่รู้ตัว)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stage">
+          <div class="stage-tag">STEP 03</div>
+          <div class="stage-content">
+            <div class="stage-title">สงคราม = ผ้าคลุมความพังทลาย</div>
+            <div class="stage-body">สงครามทำให้กระบวนการทั้งหมดดู "ชอบธรรม" ปกปิดทั้งความพังของธนาคารและความพังของรัฐ — ใครตั้งคำถาม = ไม่รักชาติ ระบบจึงทำงานได้โดยไม่ถูกขัดขวาง</div>
+            <div class="stage-actors">
+              <span class="actor">ผ้าคลุมศีลธรรม</span>
+              <span class="actor">ปิดปากผู้สงสัย</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stage">
+          <div class="stage-tag">STEP 04</div>
+          <div class="stage-content">
+            <div class="stage-title">แปรรูปหนี้ — alchemy ทางการเงิน</div>
+            <div class="stage-body">หลังสงคราม หนี้ถูก "แปรรูป" เป็นพันธบัตรที่ซื้อขายได้ในตลาด หนี้เน่าของธนาคารถูกแปลงเป็น war bond ผ่านการค้ำประกันของรัฐ — ธนาคารชิลจัด เพราะหนี้เน่ากลายเป็นสินทรัพย์ดี ที่รัฐค้ำและจ่ายดอกเบี้ยให้ 30 ปี</div>
+            <div class="stage-actors">
+              <span class="actor">หนี้เน่า → bond</span>
+              <span class="actor">ภาระ → ของประชาชน</span>
+              <span class="actor">กำไร → ของธนาคาร</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3>alchemy ของหนี้ — ก่อนและหลังสงคราม</h3>
+      <p style="margin-bottom: 8px; font-size: 15px;">นี่คือสิ่งที่นักเศรษฐศาสตร์เรียกว่า <b>balance sheet alchemy</b> — หนี้เน่าถูกเปลี่ยนเป็นสินทรัพย์ดี โดยที่ "ขนาดหนี้" ในระบบไม่ได้ลดลง แค่ย้ายเจ้าของ:</p>
+
+      <div class="alchemy">
+        <div class="alchemy-phase">
+          <div class="alchemy-label">BEFORE — ก่อนสงคราม</div>
+          <div class="alchemy-row">
+            <div class="alchemy-actor">ธนาคาร</div>
+            <div>หนี้เน่า 1,000M  ←  "สินทรัพย์เสีย" รอจ่ายไม่คืน</div>
+          </div>
+          <div class="alchemy-row">
+            <div class="alchemy-actor">รัฐ</div>
+            <div>หนี้สาธารณะ 500M  ←  ภาระปกติ</div>
+          </div>
+          <div class="alchemy-row">
+            <div class="alchemy-actor">ประชาชน</div>
+            <div>ไม่มีหนี้ส่วนนี้</div>
+          </div>
+        </div>
+
+        <div class="alchemy-arrow">↓ &nbsp;&nbsp;เกิดสงคราม + ออกกฎฉุกเฉิน&nbsp;&nbsp; ↓</div>
+
+        <div class="alchemy-phase">
+          <div class="alchemy-label">DURING — alchemy</div>
+          <div class="alchemy-row">
+            <div class="alchemy-actor">การแปรรูป</div>
+            <div>หนี้เน่าธนาคาร → war bond → หนี้รัฐ → ภาระประชาชน</div>
+          </div>
+          <div class="alchemy-row">
+            <div class="alchemy-actor">เปลี่ยนชื่อ</div>
+            <div>"non-performing loan" → "เงินกู้เพื่อชาติ"</div>
+          </div>
+        </div>
+
+        <div class="alchemy-arrow">↓ &nbsp;&nbsp;หลังสงครามสงบ&nbsp;&nbsp; ↓</div>
+
+        <div class="alchemy-phase">
+          <div class="alchemy-label">AFTER — หลังสงคราม</div>
+          <div class="alchemy-row">
+            <div class="alchemy-actor">ธนาคาร</div>
+            <div>ถือ war bond 1,000M  ←  "สินทรัพย์ดี" + ดอกเบี้ย 30 ปี</div>
+          </div>
+          <div class="alchemy-row">
+            <div class="alchemy-actor">รัฐ</div>
+            <div>หนี้สาธารณะ 1,500M  ←  เพิ่มขึ้นมหาศาล</div>
+          </div>
+          <div class="alchemy-row">
+            <div class="alchemy-actor">ประชาชน</div>
+            <div>ภาระภาษี 30 ปี + เงินเฟ้อ ตลอดอายุขัย</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pull">หนี้ไม่หายไปไหน — มันแค่ย้ายเจ้าของ<br><span style="font-size:18px; color:var(--ink-soft)">จากคนที่ก่อ ไปยังคนที่ไม่รู้ว่าตัวเองรับ</span></div>
+
+      <h3>ทำไม "ธนาคารแม่งชิลจัด"</h3>
+      <p style="font-size: 15px;">ลำดับเวลาที่ธนาคารได้ประโยชน์ — เปรียบเทียบสภานะก่อนและหลัง:</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>มิติ</th>
+              <th>ก่อนสงคราม</th>
+              <th>หลังสงคราม</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>สินทรัพย์</b></td>
+              <td>หนี้เน่า อาจไม่ได้คืน</td>
+              <td>พันธบัตรรัฐ ค้ำประกันโดยรัฐ</td>
+            </tr>
+            <tr>
+              <td><b>ความเสี่ยง</b></td>
+              <td>สูง — ลูกหนี้อาจล้มละลาย</td>
+              <td>ต่ำ — รัฐล้มยากกว่าเอกชน</td>
+            </tr>
+            <tr>
+              <td><b>กระแสเงินสด</b></td>
+              <td>ไม่แน่นอน</td>
+              <td>ดอกเบี้ยจริง สม่ำเสมอ 30 ปี</td>
+            </tr>
+            <tr>
+              <td><b>สภาพคล่อง</b></td>
+              <td>ขายต่อยาก</td>
+              <td>ขายในตลาด bond ได้ทุกวัน</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="insight">
+      <div class="insight-label">KEY INSIGHT — ระดับสังเคราะห์</div>
+      <div class="insight-body">เงินไม่จำเป็นต้อง "มี" ก่อนปล่อยกู้ — แค่ต้องมี "ใบอนุญาต" จากรัฐให้สร้างได้ ใบอนุญาตนี้คือสิ่งล้ำค่าที่สุดในระบบทุนนิยม และมันถูกแลกกับการที่ธนาคารต้องเป็นผู้ค้ำให้รัฐในยามวิกฤต — โดยใช้ประชาชนเป็นผู้รับภาระสุดท้าย</div>
+    </div>
+  </article>
+
+  <!-- ────────────── CHAPTER 5 ────────────── -->
+  <article class="chapter" id="ch5">
+    <div class="ch-num">CHAPTER V</div>
+    <div class="ch-eyebrow">กลไกซักฟอกหนี้</div>
+    <h2 class="ch-title">"แล้วหนี้เน่าเก่าๆ ของธนาคาร<br>หายไปไหนหลังสงคราม?"</h2>
+
+    <p class="lead">หนี้ไม่ได้ถูก "ลบ" — มันถูก "ย้ายเจ้าของ" ผ่านกระบวนการที่ดูถูกกฎหมายทุกขั้นตอน</p>
+
+    <div class="mech">
+      <div class="mech-label">— debt laundering ผ่านรัฐ</div>
+      <div class="mech-body">หนี้เน่าในงบดุลธนาคาร ถูก "เปลี่ยนชื่อ" เป็นเงินกู้สงคราม → กลายเป็นหนี้รัฐ → ผ่านการค้ำประกัน = "สะอาด" ประชาชนรับภาระทั้งหมดผ่านภาษีและเงินเฟ้อ โดยไม่ทันรู้ตัว</div>
+    </div>
+
+    <div class="flow">หนี้เน่าธนาคาร
+    ↓ (เปลี่ยนชื่อ)
+"เงินกู้เพื่อสงคราม"
+    ↓ (รัฐค้ำประกัน)
+หนี้สาธารณะ
+    ↓ (ภาษี + เงินเฟ้อ)
+ประชาชนจ่าย 30 ปี</div>
+
+    <div class="insight">
+      <div class="insight-label">KEY INSIGHT</div>
+      <div class="insight-body">ระบบไม่ได้ลบหนี้ — มันแค่ย้ายหนี้ไปให้คนที่ไม่มีสิทธิ์ปฏิเสธ ประชาชนคือคนเดียวที่ไม่ได้อยู่ในห้องประชุม แต่จ่ายบิลทั้งหมด</div>
+    </div>
+  </article>
+
+  <!-- ────────────── CHAPTER 6 ────────────── -->
+  <article class="chapter" id="ch6">
+    <div class="ch-num">CHAPTER VI</div>
+    <div class="ch-eyebrow">pattern ที่ไม่เคยเปลี่ยน</div>
+    <h2 class="ch-title">"ระบบนี้เกิดมาแล้วกี่ครั้ง?<br>จะเกิดอีกไหม?"</h2>
+
+    <p class="lead">ทุกรอบใช้ "เครื่องมือ" และ "ข้ออ้าง" ใหม่ แต่กลไกพื้นฐานคือสิ่งเดียวกัน — leverage เกินตัว → จุดแตก → bailout → ประชาชนรับ</p>
+
+    <div class="flow">1907   trust co.       → JP Morgan ช่วย
+1929   margin loan     → ปล่อยล้ม → great depression
+2008   subprime/MBS    → TARP $700B
+2020   covid/repo      → fed อัด $4T
+2023   svb (CRE)       → BTFP bailout
+????   ?               → ?</div>
+
+    <div class="insight">
+      <div class="insight-label">KEY INSIGHT</div>
+      <div class="insight-body">ระบบไม่เคยถูกแก้ — ถูกออกแบบมาให้เป็นแบบนี้ตั้งแต่ Jekyll Island 1910 รอบหน้าจะมาแน่ คำถามคือเมื่อไหร่ และข้ออ้างคืออะไร</div>
+    </div>
+  </article>
+
+  <!-- ────────────── CHAPTER 7 ────────────── -->
+  <article class="chapter" id="ch7">
+    <div class="ch-num">CHAPTER VII</div>
+    <div class="ch-eyebrow">แล้วเราจะวางตัวยังไง</div>
+    <h2 class="ch-title">"ถ้าระบบเป็นแบบนี้<br>คนธรรมดาจะรอดได้ยังไง?"</h2>
+
+    <p class="lead">เมื่อรู้ว่าเงินกระดาษถูกเจือจางได้เสมอ ทางออกคือถือสิ่งที่ "พิมพ์เพิ่มไม่ได้"</p>
+
+    <p>Graham เรียกว่า <b>real assets</b> — อ.ชวาทิก แบ่งเป็น <b>Phase 1/2</b> หลักการเดียวกัน: คาดการณ์การพิมพ์เงินรอบหน้า แล้วอยู่ฝั่งที่ได้ประโยชน์ก่อนคนอื่นจะรู้ตัว</p>
+
+    <div class="flow">defense layer
+─────────────
+real assets         ทอง, น้ำมัน, สินค้าโภคภัณฑ์
+margin of safety    ราคาต่ำกว่ามูลค่าจริง
+bailout hedge       short ธนาคารที่จะล้ม (KRE puts)
+reset hedge         fx + bond ที่ benefit phase 2 (EDV/VGLT)</div>
+
+    <div class="insight">
+      <div class="insight-label">KEY INSIGHT</div>
+      <div class="insight-body">คนที่เข้าใจ pattern นี้ก่อน จะวางตัวรับการรีเซ็ตได้ก่อน — Graham, Buffett, Dalio ทุกคนรวยจากการเห็น pattern นี้เร็วกว่าคนอื่น</div>
+    </div>
+  </article>
+
+  <!-- ────────────── SYNTHESIS ────────────── -->
+  <section class="synthesis">
+    <div class="synthesis-eyebrow">— synthesis</div>
+    <h2 class="synthesis-title">สรุปทั้งหมดในบรรทัดเดียว</h2>
+
+    <div class="syn-row"><div class="syn-num">01</div><div class="syn-text">ธนาคารปล่อยกู้เกินตัว — <b>fractional reserve</b></div></div>
+    <div class="syn-row"><div class="syn-num">02</div><div class="syn-text">รัฐช่วยเพราะตัดธนาคารคือตัดตัวเอง — <b>codependency</b></div></div>
+    <div class="syn-row"><div class="syn-num">03</div><div class="syn-text">สงครามคือใบอนุญาตทำทุกอย่าง — <b>perfect cover</b></div></div>
+    <div class="syn-row"><div class="syn-num">04</div><div class="syn-text">ธนาคารสร้างเงินจากอากาศ ใช้ประชาชนค้ำ — <b>money creation</b></div></div>
+    <div class="syn-row"><div class="syn-num">05</div><div class="syn-text">หนี้เน่าถูกย้ายไปให้ประชาชน — <b>debt laundering</b></div></div>
+    <div class="syn-row"><div class="syn-num">06</div><div class="syn-text">เกิดซ้ำทุก 10–15 ปี ตั้งแต่ 1913 — <b>eternal pattern</b></div></div>
+    <div class="syn-row"><div class="syn-num">07</div><div class="syn-text">เห็น pattern ก่อน = วางตัวก่อน — <b>your edge</b></div></div>
+  </section>
+
+  <!-- ────────────── SOURCES ────────────── -->
+  <section class="sources">
+    <h3 class="sources-title">Sources & References</h3>
+    <p style="font-size: 12px; color: var(--ink-mute); margin-bottom: 16px;">แหล่งอ้างอิงสำหรับ Revolving Door ใน Chapter II — ทั้งหมดเป็นแหล่งทุติยภูมิที่เปิดเผยต่อสาธารณะ</p>
+    <ol>
+      <li>U.S. Department of the Treasury — Robert E. Rubin (1995–1999) Official Biography. <a href="https://home.treasury.gov/about/history/prior-secretaries/robert-e-rubin-1995-1999">home.treasury.gov</a></li>
+      <li>Council on Foreign Relations — Robert E. Rubin Profile. <a href="https://www.cfr.org/experts/robert-e-rubin">cfr.org</a></li>
+      <li>U.S. Department of the Treasury — Henry M. Paulson, Jr. (2006–2009) Official Biography. <a href="https://home.treasury.gov/about/history/prior-secretaries/henry-m-paulson-jr-2006-2009">home.treasury.gov</a></li>
+      <li>Wikipedia — Henry Paulson, Career & Compensation. <a href="https://en.wikipedia.org/wiki/Henry_Paulson">en.wikipedia.org/wiki/Henry_Paulson</a></li>
+      <li>U.S. Department of the Treasury — Steven T. Mnuchin (2017–2021) Official Biography. <a href="https://home.treasury.gov/about/history/prior-secretaries/steven-t-mnuchin-2017-2021">home.treasury.gov</a></li>
+      <li>Wikipedia — Steven Mnuchin, Career at Goldman Sachs. <a href="https://en.wikipedia.org/wiki/Steven_Mnuchin">en.wikipedia.org/wiki/Steven_Mnuchin</a></li>
+      <li>European Central Bank — Mario Draghi Official Biography. <a href="https://www.ecb.europa.eu/press/conferences/ecbforum/previous_fora/2017/html/biographies/draghi.en.html">ecb.europa.eu</a></li>
+      <li>Wikipedia — Mario Draghi, Goldman Sachs International (2002–2005). <a href="https://en.wikipedia.org/wiki/Mario_Draghi">en.wikipedia.org/wiki/Mario_Draghi</a></li>
+      <li>U.S. Department of the Treasury — Janet Yellen (2021–2025) Official Biography. <a href="https://home.treasury.gov/about/history/prior-secretaries/janet-yellen-2021-2025">home.treasury.gov</a></li>
+      <li>Federal Reserve History — Janet L. Yellen Profile. <a href="https://www.federalreservehistory.org/people/janet-l-yellen">federalreservehistory.org</a></li>
+      <li>OpenSecrets — Federal Lobbying Set New Record in 2024 ($4.4 billion total; Finance/Insurance/Real Estate = $636.4M). <a href="https://www.opensecrets.org/news/2025/02/federal-lobbying-set-new-record-in-2024">opensecrets.org</a></li>
+      <li>OpenSecrets — Lobbying Data Summary, Trends in Spending. <a href="https://www.opensecrets.org/federal-lobbying">opensecrets.org/federal-lobbying</a></li>
+    </ol>
+    <p style="font-size: 11px; color: var(--ink-mute); margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--rule-soft);">
+      หมายเหตุ: เนื้อหาเรื่อง revolving door และ regulatory capture เป็นการสังเคราะห์จากข้อเท็จจริงที่เปิดเผยต่อสาธารณะ ไม่ใช่ข้อกล่าวหาทางกฎหมาย — ข้อมูลทั้งหมดมาจากเว็บไซต์ทางการของหน่วยงานที่เกี่ยวข้องและฐานข้อมูลสาธารณะ (OpenSecrets)
+    </p>
+  </section>
+
+  <!-- ────────────── COLOPHON ────────────── -->
+  <footer class="colophon">
+    <div class="colophon-mark">✦</div>
+    <div>The Hidden Ledger</div>
+    <div>คู่มือสำหรับคนขี้สงสัย</div>
+    <div style="margin-top: 12px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px;">end of manual</div>
+  </footer>
+
+</div>
+
+<button class="top-btn" id="topBtn" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</button>
+
+<script>
+  const btn = document.getElementById('topBtn');
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('show', window.scrollY > 600);
+  });
+</script>
+
+</body>
+</html>
