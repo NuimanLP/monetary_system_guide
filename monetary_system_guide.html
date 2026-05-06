@@ -417,6 +417,78 @@
     font-size: 14px;
   }
 
+  /* ── Mindmap / System Flow ──────────────────────────── */
+  .mindmap-section {
+    margin: 60px 0;
+    padding: 40px 0;
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    position: relative;
+  }
+  .mindmap-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .mindmap-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 500;
+    text-align: center;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .mindmap-sub {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--ink-mute);
+    font-size: 16px;
+    margin-bottom: 32px;
+  }
+  .mindmap-svg-wrap {
+    width: 100%;
+    overflow-x: auto;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 20px 12px;
+    margin-bottom: 24px;
+  }
+  .mindmap-svg-wrap svg { display: block; margin: 0 auto; max-width: 100%; height: auto; min-width: 720px; }
+  .mindmap-legend {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin-top: 24px;
+  }
+  .mm-legend-item {
+    background: var(--paper);
+    border-left: 3px solid var(--gold);
+    padding: 12px 16px;
+  }
+  .mm-legend-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .mm-legend-title {
+    font-weight: 600;
+    font-size: 13px;
+    margin-bottom: 4px;
+    color: var(--ink);
+  }
+  .mm-legend-body {
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+
   /* ── Footer Synthesis ──────────────────────────────── */
   .synthesis {
     background: var(--ink);
@@ -607,6 +679,128 @@
   }
   .sources ol li a:hover { text-decoration: underline; }
 
+  /* ── Mindmap (full system flow) ───────────────────── */
+  .mindmap-section {
+    margin: 80px 0 60px;
+    padding: 48px 0 0;
+    border-top: 1px solid var(--rule);
+  }
+  .mindmap-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  .mindmap-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4.5vw, 38px);
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .mindmap-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ink-soft);
+    text-align: center;
+    margin-bottom: 40px;
+    line-height: 1.5;
+  }
+
+  .mm-svg-wrap {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 24px 16px;
+    margin: 24px 0;
+  }
+  .mm-svg-wrap svg {
+    display: block;
+    margin: 0 auto;
+    min-width: 700px;
+  }
+
+  .mm-legend {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin: 24px 0;
+  }
+  .mm-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    padding: 8px 12px;
+    background: var(--paper);
+    border-radius: 4px;
+    border: 1px solid var(--rule-soft);
+  }
+  .mm-dot {
+    width: 14px; height: 14px; border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .mm-flow-text {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 28px 24px;
+    margin: 32px 0 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    line-height: 1.9;
+    overflow-x: auto;
+  }
+  .mm-flow-text .mm-actor {
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .mm-flow-text .mm-action {
+    color: #f4ede0;
+  }
+  .mm-flow-text .mm-arrow {
+    color: var(--accent-soft);
+    font-weight: 700;
+  }
+  .mm-flow-text .mm-loop {
+    color: var(--accent-soft);
+    font-style: italic;
+  }
+
+  .mm-cycles {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin: 32px 0;
+  }
+  .mm-cycle {
+    background: var(--paper);
+    border-left: 4px solid var(--accent);
+    padding: 18px 22px;
+  }
+  .mm-cycle-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .mm-cycle-flow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+  }
+
   /* ── Footer ─────────────────────────────────────────── */
   .colophon {
     text-align: center;
@@ -728,6 +922,12 @@
         <span class="toc-title">แล้วเราจะวางตัวยังไง — your edge</span>
         <span class="toc-dots">·····</span>
         <span class="toc-page">112</span>
+      </li>
+      <li onclick="document.getElementById('mindmap').scrollIntoView()" style="background: linear-gradient(90deg, var(--bg-warm) 0%, transparent 100%);">
+        <span class="toc-num">✦</span>
+        <span class="toc-title"><b style="color:var(--gold)">Mindmap — ทุกอย่างเชื่อมกันยังไง</b></span>
+        <span class="toc-dots">·····</span>
+        <span class="toc-page">128</span>
       </li>
     </ol>
   </nav>
@@ -1249,6 +1449,245 @@ reset hedge         fx + bond ที่ benefit phase 2 (EDV/VGLT)</div>
       <div class="insight-body">คนที่เข้าใจ pattern นี้ก่อน จะวางตัวรับการรีเซ็ตได้ก่อน — Graham, Buffett, Dalio ทุกคนรวยจากการเห็น pattern นี้เร็วกว่าคนอื่น</div>
     </div>
   </article>
+
+  <!-- ────────────── MINDMAP — SYSTEM FLOW ────────────── -->
+  <section class="mindmap-section" id="mindmap">
+    <div class="mindmap-eyebrow">— THE FULL PICTURE</div>
+    <h2 class="mindmap-title">ระบบทำงานร่วมกันอย่างไร</h2>
+    <p class="mindmap-sub">7 บทที่อ่านมาทั้งหมด ไม่ใช่เรื่องแยกกัน — แต่คือกลไกเดียวที่หมุนวนเป็นวงจร<br>ดูภาพรวมว่าแต่ละชิ้นเชื่อมกันยังไง</p>
+
+    <!-- Color Legend -->
+    <div class="mm-legend">
+      <div class="mm-legend-item"><span class="mm-dot" style="background:#8b2e1f"></span>Bank — ผู้สร้างเงิน</div>
+      <div class="mm-legend-item"><span class="mm-dot" style="background:#1e3a5f"></span>State — ผู้ออกใบอนุญาต</div>
+      <div class="mm-legend-item"><span class="mm-dot" style="background:#b8893d"></span>People — ผู้แบกภาระ</div>
+      <div class="mm-legend-item"><span class="mm-dot" style="background:#4a453d"></span>Trigger — จุดเริ่ม/จุดแตก</div>
+    </div>
+
+    <!-- SVG Mindmap -->
+    <div class="mm-svg-wrap">
+      <svg viewBox="0 0 900 720" xmlns="http://www.w3.org/2000/svg" aria-label="System flow mindmap">
+        <defs>
+          <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L9,3 z" fill="#8a8478"/>
+          </marker>
+          <marker id="arrow-red" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L9,3 z" fill="#8b2e1f"/>
+          </marker>
+          <marker id="arrow-gold" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L9,3 z" fill="#b8893d"/>
+          </marker>
+        </defs>
+
+        <!-- BG layers -->
+        <rect x="20" y="20" width="860" height="100" fill="#fffdf7" stroke="#e8e0cf" rx="4"/>
+        <text x="35" y="45" font-family="JetBrains Mono" font-size="10" letter-spacing="2" fill="#b8893d">LAYER 01 — ROOT CONDITION</text>
+        <text x="35" y="62" font-family="IBM Plex Sans Thai" font-size="11" fill="#8a8478">เงื่อนไขพื้นฐานที่ทำให้ระบบเกิดได้</text>
+
+        <rect x="20" y="140" width="860" height="160" fill="#fffdf7" stroke="#e8e0cf" rx="4"/>
+        <text x="35" y="165" font-family="JetBrains Mono" font-size="10" letter-spacing="2" fill="#b8893d">LAYER 02 — ACTORS &amp; STRUCTURE</text>
+        <text x="35" y="182" font-family="IBM Plex Sans Thai" font-size="11" fill="#8a8478">ผู้เล่น 3 ฝ่ายและความสัมพันธ์ที่ออกแบบให้พึ่งพากัน</text>
+
+        <rect x="20" y="320" width="860" height="180" fill="#fffdf7" stroke="#e8e0cf" rx="4"/>
+        <text x="35" y="345" font-family="JetBrains Mono" font-size="10" letter-spacing="2" fill="#b8893d">LAYER 03 — CRISIS MECHANICS</text>
+        <text x="35" y="362" font-family="IBM Plex Sans Thai" font-size="11" fill="#8a8478">เมื่อระบบถึงจุดแตก กลไกซักฟอกหนี้ทำงาน</text>
+
+        <rect x="20" y="520" width="860" height="180" fill="#fffdf7" stroke="#e8e0cf" rx="4"/>
+        <text x="35" y="545" font-family="JetBrains Mono" font-size="10" letter-spacing="2" fill="#b8893d">LAYER 04 — OUTCOME &amp; LOOP</text>
+        <text x="35" y="562" font-family="IBM Plex Sans Thai" font-size="11" fill="#8a8478">ผลลัพธ์ที่ทำให้วงจรกลับมาเริ่มใหม่</text>
+
+        <!-- ============ LAYER 1: ROOT ============ -->
+        <g>
+          <rect x="350" y="65" width="200" height="40" fill="#1a1814" rx="20"/>
+          <text x="450" y="83" font-family="IBM Plex Sans Thai" font-size="13" font-weight="600" fill="#faf8f3" text-anchor="middle">Fractional Reserve System</text>
+          <text x="450" y="98" font-family="JetBrains Mono" font-size="9" fill="#b8893d" text-anchor="middle">CH I — ROOT</text>
+        </g>
+
+        <!-- arrows down to layer 2 -->
+        <path d="M 450 110 L 450 195" stroke="#8a8478" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+
+        <!-- ============ LAYER 2: 3 ACTORS ============ -->
+        <!-- BANK (left) -->
+        <g>
+          <rect x="60" y="200" width="200" height="80" fill="#8b2e1f" rx="6"/>
+          <text x="160" y="225" font-family="IBM Plex Sans Thai" font-size="14" font-weight="600" fill="#faf8f3" text-anchor="middle">BANK — ธนาคาร</text>
+          <text x="160" y="245" font-family="IBM Plex Sans Thai" font-size="10" fill="#fffdf7" text-anchor="middle">ผู้ผลิตเงิน · มีหนี้เน่าในงบดุล</text>
+          <text x="160" y="262" font-family="IBM Plex Sans Thai" font-size="10" fill="#fffdf7" text-anchor="middle">ปล่อยกู้เกินตัว → leverage สูง</text>
+          <text x="160" y="276" font-family="JetBrains Mono" font-size="9" fill="#f4ede0" text-anchor="middle">CH IV</text>
+        </g>
+
+        <!-- STATE (center) -->
+        <g>
+          <rect x="350" y="200" width="200" height="80" fill="#1e3a5f" rx="6"/>
+          <text x="450" y="225" font-family="IBM Plex Sans Thai" font-size="14" font-weight="600" fill="#faf8f3" text-anchor="middle">STATE — รัฐบาล</text>
+          <text x="450" y="245" font-family="IBM Plex Sans Thai" font-size="10" fill="#fffdf7" text-anchor="middle">ออกใบอนุญาต · ต้องการเงินเร็ว</text>
+          <text x="450" y="262" font-family="IBM Plex Sans Thai" font-size="10" fill="#fffdf7" text-anchor="middle">เก็บภาษีไม่ทัน → ต้องกู้</text>
+          <text x="450" y="276" font-family="JetBrains Mono" font-size="9" fill="#f4ede0" text-anchor="middle">CH II</text>
+        </g>
+
+        <!-- PEOPLE (right) -->
+        <g>
+          <rect x="640" y="200" width="200" height="80" fill="#b8893d" rx="6"/>
+          <text x="740" y="225" font-family="IBM Plex Sans Thai" font-size="14" font-weight="600" fill="#1a1814" text-anchor="middle">PEOPLE — ประชาชน</text>
+          <text x="740" y="245" font-family="IBM Plex Sans Thai" font-size="10" fill="#1a1814" text-anchor="middle">ผู้ค้ำเงียบ · ไม่อยู่ในห้องประชุม</text>
+          <text x="740" y="262" font-family="IBM Plex Sans Thai" font-size="10" fill="#1a1814" text-anchor="middle">เครดิตของชาติ = เครดิตของพวกเขา</text>
+          <text x="740" y="276" font-family="JetBrains Mono" font-size="9" fill="#1a1814" text-anchor="middle">CH I+IV</text>
+        </g>
+
+        <!-- Bidirectional arrows: Bank ↔ State -->
+        <path d="M 265 235 L 345 235" stroke="#8a8478" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+        <path d="M 345 250 L 265 250" stroke="#8a8478" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+        <text x="305" y="225" font-family="JetBrains Mono" font-size="9" fill="#8a8478" text-anchor="middle">codependency</text>
+
+        <!-- State → People -->
+        <path d="M 555 240 L 635 240" stroke="#1e3a5f" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+        <text x="595" y="232" font-family="JetBrains Mono" font-size="9" fill="#1e3a5f" text-anchor="middle">รูด credit</text>
+
+        <!-- ============ TRIGGER → LAYER 3 ============ -->
+        <g>
+          <path d="M 450 285 L 450 380" stroke="#8b2e1f" stroke-width="2" fill="none" stroke-dasharray="4,4" marker-end="url(#arrow-red)"/>
+          <rect x="370" y="320" width="160" height="28" fill="#fffdf7" stroke="#8b2e1f" rx="4"/>
+          <text x="450" y="338" font-family="IBM Plex Sans Thai" font-size="11" font-weight="600" fill="#8b2e1f" text-anchor="middle">TRIGGER — วิกฤต / สงคราม</text>
+        </g>
+
+        <!-- ============ LAYER 3: CRISIS MECHANICS ============ -->
+        <!-- Stage 1 -->
+        <g>
+          <rect x="60" y="395" width="180" height="90" fill="#8b2e1f" rx="6"/>
+          <text x="150" y="418" font-family="IBM Plex Sans Thai" font-size="12" font-weight="600" fill="#faf8f3" text-anchor="middle">01 · Money Creation</text>
+          <text x="150" y="438" font-family="IBM Plex Sans Thai" font-size="10" fill="#fffdf7" text-anchor="middle">ธนาคารบันทึกในบัญชี</text>
+          <text x="150" y="453" font-family="IBM Plex Sans Thai" font-size="10" fill="#fffdf7" text-anchor="middle">รัฐได้เงินสดทันที</text>
+          <text x="150" y="475" font-family="JetBrains Mono" font-size="9" fill="#f4ede0" text-anchor="middle">CH IV</text>
+        </g>
+
+        <!-- Stage 2 -->
+        <g>
+          <rect x="260" y="395" width="180" height="90" fill="#8b2e1f" rx="6"/>
+          <text x="350" y="418" font-family="IBM Plex Sans Thai" font-size="12" font-weight="600" fill="#faf8f3" text-anchor="middle">02 · War Cover</text>
+          <text x="350" y="438" font-family="IBM Plex Sans Thai" font-size="10" fill="#fffdf7" text-anchor="middle">"เพื่อชาติ" ปิดปาก</text>
+          <text x="350" y="453" font-family="IBM Plex Sans Thai" font-size="10" fill="#fffdf7" text-anchor="middle">Gold Standard ถูกระงับ</text>
+          <text x="350" y="475" font-family="JetBrains Mono" font-size="9" fill="#f4ede0" text-anchor="middle">CH III</text>
+        </g>
+
+        <!-- Stage 3 -->
+        <g>
+          <rect x="460" y="395" width="180" height="90" fill="#8b2e1f" rx="6"/>
+          <text x="550" y="418" font-family="IBM Plex Sans Thai" font-size="12" font-weight="600" fill="#faf8f3" text-anchor="middle">03 · Debt Laundering</text>
+          <text x="550" y="438" font-family="IBM Plex Sans Thai" font-size="10" fill="#fffdf7" text-anchor="middle">หนี้เน่า → War Bond</text>
+          <text x="550" y="453" font-family="IBM Plex Sans Thai" font-size="10" fill="#fffdf7" text-anchor="middle">ย้ายไปงบดุลรัฐ</text>
+          <text x="550" y="475" font-family="JetBrains Mono" font-size="9" fill="#f4ede0" text-anchor="middle">CH V</text>
+        </g>
+
+        <!-- Stage 4 -->
+        <g>
+          <rect x="660" y="395" width="180" height="90" fill="#b8893d" rx="6"/>
+          <text x="750" y="418" font-family="IBM Plex Sans Thai" font-size="12" font-weight="600" fill="#1a1814" text-anchor="middle">04 · Tax + Inflation</text>
+          <text x="750" y="438" font-family="IBM Plex Sans Thai" font-size="10" fill="#1a1814" text-anchor="middle">ประชาชนจ่าย 30 ปี</text>
+          <text x="750" y="453" font-family="IBM Plex Sans Thai" font-size="10" fill="#1a1814" text-anchor="middle">เงินในมือซื้อของได้น้อยลง</text>
+          <text x="750" y="475" font-family="JetBrains Mono" font-size="9" fill="#1a1814" text-anchor="middle">CH V</text>
+        </g>
+
+        <!-- Stage arrows -->
+        <path d="M 245 440 L 255 440" stroke="#8b2e1f" stroke-width="1.5" fill="none" marker-end="url(#arrow-red)"/>
+        <path d="M 445 440 L 455 440" stroke="#8b2e1f" stroke-width="1.5" fill="none" marker-end="url(#arrow-red)"/>
+        <path d="M 645 440 L 655 440" stroke="#8b2e1f" stroke-width="1.5" fill="none" marker-end="url(#arrow-red)"/>
+
+        <!-- Down to outcome -->
+        <path d="M 450 490 L 450 580" stroke="#8a8478" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+
+        <!-- ============ LAYER 4: OUTCOME ============ -->
+        <!-- Bank wins -->
+        <g>
+          <rect x="60" y="595" width="220" height="80" fill="#fffdf7" stroke="#8b2e1f" stroke-width="2" rx="6"/>
+          <text x="170" y="618" font-family="IBM Plex Sans Thai" font-size="13" font-weight="600" fill="#8b2e1f" text-anchor="middle">BANK ชนะ</text>
+          <text x="170" y="638" font-family="IBM Plex Sans Thai" font-size="11" fill="#1a1814" text-anchor="middle">หนี้เน่า → bond ที่รัฐค้ำ</text>
+          <text x="170" y="653" font-family="IBM Plex Sans Thai" font-size="11" fill="#1a1814" text-anchor="middle">ดอกเบี้ย 30 ปี risk-free</text>
+          <text x="170" y="670" font-family="JetBrains Mono" font-size="9" fill="#8b2e1f" text-anchor="middle">"แม่งชิลจัด"</text>
+        </g>
+
+        <!-- State wins -->
+        <g>
+          <rect x="340" y="595" width="220" height="80" fill="#fffdf7" stroke="#1e3a5f" stroke-width="2" rx="6"/>
+          <text x="450" y="618" font-family="IBM Plex Sans Thai" font-size="13" font-weight="600" fill="#1e3a5f" text-anchor="middle">STATE ชนะ</text>
+          <text x="450" y="638" font-family="IBM Plex Sans Thai" font-size="11" fill="#1a1814" text-anchor="middle">ทำสงคราม / โครงการใหญ่</text>
+          <text x="450" y="653" font-family="IBM Plex Sans Thai" font-size="11" fill="#1a1814" text-anchor="middle">รักษาอำนาจต่อ</text>
+          <text x="450" y="670" font-family="JetBrains Mono" font-size="9" fill="#1e3a5f" text-anchor="middle">revolving door (CH II)</text>
+        </g>
+
+        <!-- People lose -->
+        <g>
+          <rect x="620" y="595" width="220" height="80" fill="#fffdf7" stroke="#b8893d" stroke-width="2" rx="6"/>
+          <text x="730" y="618" font-family="IBM Plex Sans Thai" font-size="13" font-weight="600" fill="#b8893d" text-anchor="middle">PEOPLE แพ้</text>
+          <text x="730" y="638" font-family="IBM Plex Sans Thai" font-size="11" fill="#1a1814" text-anchor="middle">ภาษี + เงินเฟ้อ + ลูกหายในสงคราม</text>
+          <text x="730" y="653" font-family="IBM Plex Sans Thai" font-size="11" fill="#1a1814" text-anchor="middle">ค่าแรงจริงลดลง</text>
+          <text x="730" y="670" font-family="JetBrains Mono" font-size="9" fill="#b8893d" text-anchor="middle">ไม่รู้ตัว</text>
+        </g>
+
+        <!-- LOOP arrows: Outcome → Back to Layer 2 -->
+        <path d="M 60 635 Q 20 635 20 400 Q 20 200 55 200" stroke="#b8893d" stroke-width="2" fill="none" stroke-dasharray="6,4" marker-end="url(#arrow-gold)"/>
+        <text x="32" y="395" font-family="JetBrains Mono" font-size="9" fill="#b8893d" text-anchor="middle" transform="rotate(-90 32 395)">LOOP — ทุก 10–15 ปี (CH VI)</text>
+
+        <path d="M 840 635 Q 880 635 880 400 Q 880 200 845 200" stroke="#b8893d" stroke-width="2" fill="none" stroke-dasharray="6,4" marker-end="url(#arrow-gold)"/>
+        <text x="868" y="395" font-family="JetBrains Mono" font-size="9" fill="#b8893d" text-anchor="middle" transform="rotate(90 868 395)">1907 · 1929 · 2008 · 2020 · 2023 · ?</text>
+      </svg>
+    </div>
+
+    <!-- Linear text version of flow -->
+    <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; margin: 40px 0 16px; color: var(--ink);">อ่านเป็นเส้นเดียว</h3>
+    <p style="font-size: 14px; color: var(--ink-soft); margin-bottom: 12px;">ถ้าจะอ่านเป็น narrative เดียว ระบบทำงานแบบนี้:</p>
+
+    <div class="mm-flow-text">
+<span class="mm-actor">[BANK]</span> <span class="mm-action">ปล่อยกู้เกินตัวผ่าน fractional reserve</span> <span class="mm-arrow">→</span> มีหนี้เน่าในงบดุล
+                                                <span class="mm-arrow">↓</span>
+<span class="mm-actor">[STATE]</span> <span class="mm-action">ต้องการเงินเร็ว แต่เก็บภาษีไม่ทัน</span>            <span class="mm-arrow">→</span> ต้องกู้
+                                                <span class="mm-arrow">↓</span>
+<span class="mm-actor">[BANK + STATE]</span> <span class="mm-action">ตกลง — ธนาคารผลิตเงิน รัฐใช้เครดิตประชาชนค้ำ</span>
+                                                <span class="mm-arrow">↓</span>
+<span class="mm-action">เกิดวิกฤต / สงคราม → "เพื่อชาติ" ปิดปากผู้สงสัย</span>
+                                                <span class="mm-arrow">↓</span>
+<span class="mm-actor">[ALCHEMY]</span> <span class="mm-action">หนี้เน่า → War Bond → หนี้รัฐ → ภาระประชาชน</span>
+                                                <span class="mm-arrow">↓</span>
+<span class="mm-actor">[BANK]</span> <span class="mm-action">ได้ bond ที่รัฐค้ำ + ดอกเบี้ย 30 ปี</span>     ← <span style="color:#8b2e1f">ชนะ</span>
+<span class="mm-actor">[STATE]</span> <span class="mm-action">รักษาอำนาจ + revolving door</span>            ← <span style="color:#1e3a5f">ชนะ</span>
+<span class="mm-actor">[PEOPLE]</span> <span class="mm-action">จ่าย 30 ปี ผ่านภาษี + เงินเฟ้อ</span>          ← <span style="color:#b8893d">แพ้</span>
+                                                <span class="mm-arrow">↓</span>
+<span class="mm-loop">LOOP กลับไปเริ่มใหม่ — ทุก 10–15 ปี ด้วยข้ออ้างใหม่</span></div>
+
+    <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; margin: 40px 0 16px; color: var(--ink);">ตัวอย่าง 5 รอบที่ผ่านมา</h3>
+    <p style="font-size: 14px; color: var(--ink-soft); margin-bottom: 12px;">ระบบเดียวกัน — เปลี่ยนแค่ trigger และเครื่องมือ:</p>
+
+    <div class="mm-cycles">
+      <div class="mm-cycle">
+        <div class="mm-cycle-name">1907 · Panic of 1907</div>
+        <div class="mm-cycle-flow">Trust co. over-leverage → Knickerbocker ล้ม → JP Morgan ส่วนตัวช่วย → ผลพวง: สร้าง Federal Reserve ปี 1913</div>
+      </div>
+      <div class="mm-cycle">
+        <div class="mm-cycle-name">1929 · Great Depression</div>
+        <div class="mm-cycle-flow">Margin loan 90% → ตลาดร่วง → ปล่อยล้ม 9,000+ ธนาคาร → WW2 เป็นทางออก → Bretton Woods กำหนดระเบียบใหม่</div>
+      </div>
+      <div class="mm-cycle">
+        <div class="mm-cycle-name">2008 · Global Financial Crisis</div>
+        <div class="mm-cycle-flow">Subprime/MBS → Lehman ล้ม → TARP $700B (Paulson จาก Goldman) → Fed QE → หนี้ย้ายเข้า Fed Balance Sheet</div>
+      </div>
+      <div class="mm-cycle">
+        <div class="mm-cycle-name">2020 · COVID Crisis</div>
+        <div class="mm-cycle-flow">Repo market freeze → Fed อัดฉีด $4T → ซื้อ Junk Bond ครั้งแรกในประวัติศาสตร์ → เงินเฟ้อ 8%+ ตามมา</div>
+      </div>
+      <div class="mm-cycle">
+        <div class="mm-cycle-name">2023 · SVB / Regional Banks</div>
+        <div class="mm-cycle-flow">Bond losses จากดอกเบี้ยขึ้น → SVB run → BTFP bailout → ปัญหา CRE ยังรออยู่ข้างหน้า</div>
+      </div>
+      <div class="mm-cycle" style="border-left-color: var(--gold); background: var(--bg-warm);">
+        <div class="mm-cycle-name" style="color: var(--gold)">???? · The Next One</div>
+        <div class="mm-cycle-flow">Trigger ใหม่ + ข้ออ้างใหม่ + เครื่องมือใหม่ — กลไกเดิม<br><b style="color: var(--accent)">นี่คือสิ่งที่ KRE Put + EDV Plan + PTTEP กำลัง bet ว่าจะมา</b></div>
+      </div>
+    </div>
+
+    <div class="insight" style="margin-top: 36px;">
+      <div class="insight-label">FINAL INSIGHT — เห็นภาพแล้ว</div>
+      <div class="insight-body">เมื่อเห็น mindmap นี้ทั้งหมด คุณจะไม่เห็นวิกฤตเป็น "อุบัติเหตุ" อีกต่อไป — มันคือ feature ของระบบ ไม่ใช่ bug<br><br>คนที่เข้าใจ mindmap นี้ก่อน จะวางตัวรับการ loop รอบหน้าได้ก่อนคนอื่น</div>
+    </div>
+  </section>
 
   <!-- ────────────── SYNTHESIS ────────────── -->
   <section class="synthesis">
